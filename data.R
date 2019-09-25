@@ -1,86 +1,12 @@
-# dataset1 #######################################################################################################
-setwd("C:/Users/Pedro/Downloads/AdminInfo-TA1")
+setwd("C:/Users/Jhon/Desktop/Nueva carpeta/admiinfo/Nueva carpeta")
 NAMES <- read.table("EGG.csv", nrow = 1, stringsAsFactors = FALSE, sep = ";")
 DATA <- read.table("EGG.csv", skip = 1, stringsAsFactors = FALSE, sep = ";")
 DATA <- DATA[, 1:134]
 names(DATA) <- NAMES 
 
-DATA$Vowel=factor(DATA$Vowel, levels = c('a','e','i','o','u'),labels=c(1,2,3,4,5))
-DATA$Vowel= ifelse(is.na(DATA$Vowel), ave(DATA$Vowel, FUN = function(x) mean(x, na.rm = 'TRUE')), DATA$Vowel)
-DATA$Vowel = as.numeric(format(round(DATA$Vowel, 0)))
-DATA$Vowel=factor(DATA$Vowel, levels = c(1,2,3,4,5),labels=c('a','e','i','o','u'))
 
 
-DATA$`Dialect/Village`=factor(DATA$`Dialect/Village`, levels = c('v1','v2','w','SMZ','SJG','BLACK'),labels=c(1,2,3,4,5,6))
-DATA$`Dialect/Village`= ifelse(is.na(DATA$`Dialect/Village`), ave(DATA$Vowel, FUN = function(x) mean(x, na.rm = 'TRUE')), DATA$Vowel)
-DATA$`Dialect/Village` = as.numeric(format(round(DATA$`Dialect/Village`, 0)))
-
-
-
-
-
-maxCol = max(database$citation_count_sum)
-minCol = min(database$citation_count_sum)
-
-library(ggplot2)
-
-
-
-# Normalización Lineal
-
-nLineal <- function(x, maxCol, minCol) {
-  result <- (x - minCol) / (maxCol - minCol)
-  return(result)
-}
-
-maxValue <- max(database$citation_count_sum, na.rm = TRUE)
-minValue <- min(database$citation_count_sum, na.rm = TRUE)
-
-database$citation_count_sum <- nLineal(database$citation_count_sum, maxValue, minValue)
-
-# Normalización por desviación estandar
-
-nEstandar <- function(x, med, desv) {
-  result <- (x - med) / desv
-  return(result)
-}
-
-med <- mean(DB1$paper_count_sum, na.rm = TRUE)
-desv <- sd(DB1$paper_count_sum, na.rm = TRUE)
-
-DB1$paper_count_sum <- nLineal(DB1$paper_count_sum, med, desv)
-
-DB1$paper_count_sum
-
-# Normalización por valor Máximo
-
-nMax <- function(x, max) {
-  return <- (x/max)
-}
-
-max <- max(DB1$avg_cites_per_paper, na.rm = TRUE)
-
-DB1$avg_cites_per_paper <- nMax(DB1$avg_cites_per_paper, max)
-DB1$avg_cites_per_paper
-
-
-#Normalizacion Z-score
-Desviacion<-function(x,media){
-  return <- sqrt(sum((x-media)^2)/length(x))
-}
-
-Zscore <- function(x,media){
-  desviacion = Desviacion(x,media)
-  
-  return <- (x-media)/desviacion
-}
-#Comprobar datos numeros en DB1
-numericos=c()
-for (i in 1:length(DB1[1,])){
-  if (is.numeric(DB1[1,i])){
-    numericos=c(numericos,i)
-  }
-}
+DATA$CQ_mean= ifelse(is.na(DATA$CQ_mean), ave(DATA$CQ_mean, FUN = function(x) mean(x, na.rm = 'TRUE')), DATA$CQ_mean)
 
 
 # 1
@@ -135,33 +61,39 @@ dist(DATA$sq2_sq1_mean, method="minkowski", diag=TRUE, upper=FALSE, p=4)
 
 
 
+#Zscore reutilizable
 
+Zscore <- function(x,media){
+  desviacion = Desviacion(x,media)
+  
+  return <- (x-media)/desviacion
+}
+DATA$peak_Vel_mean=Zscore(DATA$peak_Vel_mean,median(DATA$peak_Vel_mean))
+DATA$min_Vel_mean=Zscore(DATA$min_Vel_mean,median(DATA$min_Vel_mean))
+DATA$min_Vel_Time_mean=Zscore(DATA$min_Vel_Time_mean,median(DATA$min_Vel_Time_mean))
+DATA$peak_Vel_Time_mean=Zscore(DATA$peak_Vel_Time_mean,median(DATA$peak_Vel_Time_mean))
+DATA$ratio_mean=Zscore(DATA$ratio_mean,median(DATA$ratio_mean))
+DATA$CQ_mean=Zscore(DATA$CQ_mean,median(DATA$CQ_mean))
+DATA$CQ_H_mean=Zscore(DATA$CQ_H_mean,median(DATA$CQ_H_mean))
+DATA$CQ_PM_mean=Zscore(DATA$CQ_PM_mean,median(DATA$CQ_PM_mean))
+DATA$CQ_HT_mean=Zscore(DATA$CQ_HT_mean,median(DATA$CQ_HT_mean))
+DATA$`SQ2-SQ1_mean`=Zscore(DATA$`SQ2-SQ1_mean`,median(DATA$`SQ2-SQ1_mean`))
 
+#normalizacion maxreutilizable
 
+nMax <- function(x, max) {
+  return <- (x/max)
+}
+DATA$peak_Vel_mean=nMax(DATA$peak_Vel_mean,max(DATA$peak_Vel_mean))
+DATA$min_Vel_mean=nMax(DATA$min_Vel_mean,max(DATA$min_Vel_mean))
+DATA$min_Vel_Time_mean=nMax(DATA$min_Vel_Time_mean,max(DATA$min_Vel_Time_mean))
+DATA$peak_Vel_Time_mean=nMax(DATA$peak_Vel_Time_mean,max(DATA$peak_Vel_Time_mean))
+DATA$ratio_mean=nMax(DATA$ratio_mean,max(DATA$ratio_mean))
+DATA$CQ_mean=nMax(DATA$CQ_mean,max(DATA$CQ_mean))
+DATA$CQ_H_mean=nMax(DATA$CQ_H_mean,max(DATA$CQ_H_mean))
+DATA$CQ_PM_mean=nMax(DATA$CQ_PM_mean,max(DATA$CQ_PM_mean))
+DATA$CQ_HT_mean=nMax(DATA$CQ_HT_mean,max(DATA$CQ_HT_mean))
+DATA$`SQ2-SQ1_mean`=Zscore(DATA$`SQ2-SQ1_mean`,median(DATA$`SQ2-SQ1_mean`))
 
-# dataset2 ####################################################################################################
-
-NAMES <- read.table("dataset2.csv", nrow = 1, stringsAsFactors = FALSE, sep = ",")
-DATA <- read.table("dataset2.csv", skip = 1, stringsAsFactors = FALSE, sep = ",")
-DATA <- DATA[, 1:5]
-names(DATA) <- NAMES 
-
-# 1
-dist(DATA$NW_Plot, method="euclidean", diag=TRUE, upper=FALSE, p=2)
-dist(DATA$NW_Plot, method="manhattan", diag=TRUE, upper=FALSE)
-dist(DATA$NW_Plot, method="minkowski", diag=TRUE, upper=FALSE, p=4)
-
-# 2
-dist(DATA$NW_Title, method="euclidean", diag=TRUE, upper=FALSE, p=2)
-dist(DATA$NW_Title, method="manhattan", diag=TRUE, upper=FALSE)
-dist(DATA$NW_Title, method="minkowski", diag=TRUE, upper=FALSE, p=4)
-
-# 3
-dist(DATA$ND_Title, method="euclidean", diag=TRUE, upper=FALSE, p=2)
-dist(DATA$ND_Title, method="manhattan", diag=TRUE, upper=FALSE)
-dist(DATA$ND_Title, method="minkowski", diag=TRUE, upper=FALSE, p=4)
-
-# 4
-dist(DATA$ND_Plot, method="euclidean", diag=TRUE, upper=FALSE, p=2)
-dist(DATA$ND_Plot, method="manhattan", diag=TRUE, upper=FALSE)
-dist(DATA$ND_Plot, method="minkowski", diag=TRUE, upper=FALSE, p=4)
+write.table(DATA, file = "DATAZscore.dat")
+write.table(DATA, file = "DATAValormaximo.dat")
