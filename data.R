@@ -83,6 +83,60 @@ for (i in 1:length(DB1[1,])){
 }
 
 
+# 1
+dist(DATA$peak_Vel_mean, method="euclidean", diag=TRUE, upper=FALSE, p=2)
+dist(DATA$peak_Vel_mean, method="manhattan", diag=TRUE, upper=FALSE)
+dist(DATA$peak_Vel_mean, method="minkowski", diag=TRUE, upper=FALSE, p=4)
+
+# 2
+dist(DATA$min_vel_mean, method="euclidean", diag=TRUE, upper=FALSE, p=2)
+dist(DATA$min_vel_mean, method="manhattan", diag=TRUE, upper=FALSE)
+dist(DATA$min_vel_mean, method="minkowski", diag=TRUE, upper=FALSE, p=4)
+
+# 3
+dist(DATA$min_vel_time_mean, method="euclidean", diag=TRUE, upper=FALSE, p=2)
+dist(DATA$min_vel_time_mean, method="manhattan", diag=TRUE, upper=FALSE)
+dist(DATA$min_vel_time_mean, method="minkowski", diag=TRUE, upper=FALSE, p=4)
+
+# 4
+dist(DATA$peak_vel_time_mean, method="euclidean", diag=TRUE, upper=FALSE, p=2)
+dist(DATA$peak_vel_time_mean, method="manhattan", diag=TRUE, upper=FALSE)
+dist(DATA$peak_vel_time_mean, method="minkowski", diag=TRUE, upper=FALSE, p=4)
+
+# 5
+dist(DATA$ratio_mean, method="euclidean", diag=TRUE, upper=FALSE, p=2)
+dist(DATA$ratio_mean, method="manhattan", diag=TRUE, upper=FALSE)
+dist(DATA$ratio_mean, method="minkowski", diag=TRUE, upper=FALSE, p=4)
+
+# 6
+dist(DATA$CQ_mean, method="euclidean", diag=TRUE, upper=FALSE, p=2)
+dist(DATA$CQ_mean, method="manhattan", diag=TRUE, upper=FALSE)
+dist(DATA$CQ_mean, method="minkowski", diag=TRUE, upper=FALSE, p=4)
+
+# 7
+dist(DATA$CQ_H_mean, method="euclidean", diag=TRUE, upper=FALSE, p=2)
+dist(DATA$CQ_H_mean, method="manhattan", diag=TRUE, upper=FALSE)
+dist(DATA$CQ_H_mean, method="minkowski", diag=TRUE, upper=FALSE, p=4)
+
+# 8
+dist(DATA$CQ_PM_mean, method="euclidean", diag=TRUE, upper=FALSE, p=2)
+dist(DATA$CQ_PM_mean, method="manhattan", diag=TRUE, upper=FALSE)
+dist(DATA$CQ_PM_mean, method="minkowski", diag=TRUE, upper=FALSE, p=4)
+
+# 9
+dist(DATA$CQ_HT_mean, method="euclidean", diag=TRUE, upper=FALSE, p=2)
+dist(DATA$CQ_HT_mean, method="manhattan", diag=TRUE, upper=FALSE)
+dist(DATA$CQ_HT_mean, method="minkowski", diag=TRUE, upper=FALSE, p=4)
+
+# 10
+dist(DATA$sq2_sq1_mean, method="euclidean", diag=TRUE, upper=FALSE, p=2)
+dist(DATA$sq2_sq1_mean, method="manhattan", diag=TRUE, upper=FALSE)
+dist(DATA$sq2_sq1_mean, method="minkowski", diag=TRUE, upper=FALSE, p=4)
+
+
+
+
+
 
 
 # dataset2 ####################################################################################################
