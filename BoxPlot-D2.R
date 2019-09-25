@@ -3,10 +3,10 @@ ND_Title <- dataset$ND_Title
 NW_Plot <- dataset$NW_Plot
 ND_Plot <- dataset$ND_Plot
 
-NW_Title_norm <- rnorm(200,mean=mean(NW_Title, na.rm=TRUE), sd=sd(NW_Title, na.rm=TRUE))
-ND_Title_norm <- rnorm(200,mean=mean(ND_Title, na.rm=TRUE), sd=sd(ND_Title, na.rm=TRUE))
-NW_Plot_norm <- rnorm(200,mean=mean(NW_Plot, na.rm=TRUE), sd=sd(NW_Plot, na.rm=TRUE))
-ND_Plot_norm <- rnorm(200,mean=mean(ND_Plot, na.rm=TRUE), sd=sd(ND_Plot, na.rm=TRUE))
+NW_Title_norm <- rnorm(1000,mean=mean(NW_Title, na.rm=TRUE), sd=sd(NW_Title, na.rm=TRUE))
+ND_Title_norm <- rnorm(1000,mean=mean(ND_Title, na.rm=TRUE), sd=sd(ND_Title, na.rm=TRUE))
+NW_Plot_norm <- rnorm(1000,mean=mean(NW_Plot, na.rm=TRUE), sd=sd(NW_Plot, na.rm=TRUE))
+ND_Plot_norm <- rnorm(1000,mean=mean(ND_Plot, na.rm=TRUE), sd=sd(ND_Plot, na.rm=TRUE))
 
 boxplot(NW_Title, NW_Title_norm,
         main = "Distribución central del número de palabras por Titulo",
